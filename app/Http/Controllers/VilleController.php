@@ -13,7 +13,7 @@ class VilleController extends Controller
      */
     public function index()
     {
-        $villes=Ville::paginate(15);
+        $villes=Ville::paginate(10);
         return view('villes.index',compact('villes'));
     }
 

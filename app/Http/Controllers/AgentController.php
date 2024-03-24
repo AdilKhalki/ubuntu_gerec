@@ -12,7 +12,9 @@ class AgentController extends Controller
      */
     public function index()
     {
-        //
+        $agents = Agent::paginate(10);
+        return view('agents.index', compact('agents'));
+        
     }
 
     /**
@@ -20,6 +22,7 @@ class AgentController extends Controller
      */
     public function create()
     {
+        return view('agents.create');
         //
     }
 
@@ -28,7 +31,9 @@ class AgentController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        Agent::create($request->all());
+        return redirect()->route('agents.index');
+        
     }
 
     /**
@@ -36,7 +41,8 @@ class AgentController extends Controller
      */
     public function show(Agent $agent)
     {
-        //
+        return view('agents.show', compact('agent'));
+        
     }
 
     /**
@@ -44,7 +50,7 @@ class AgentController extends Controller
      */
     public function edit(Agent $agent)
     {
-        //
+        return view('agents.edit', compact('agent'));
     }
 
     /**
@@ -52,7 +58,8 @@ class AgentController extends Controller
      */
     public function update(Request $request, Agent $agent)
     {
-        //
+        $agent->update($request->all());
+        return redirect()->route('agents.index');
     }
 
     /**
@@ -60,6 +67,7 @@ class AgentController extends Controller
      */
     public function destroy(Agent $agent)
     {
-        //
+        $agent->delete();
+        return redirect()->route('agents.index');
     }
 }
